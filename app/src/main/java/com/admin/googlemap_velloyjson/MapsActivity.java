@@ -36,7 +36,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -133,23 +133,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpnLocation.setAdapter(arrayAdapter);
-    }
-    private void updateparserJson() {
-
-        try {
-            JSONObject jsonObject = new JSONObject();
-            JSONArray data = jsonObject.getJSONObject("result").getJSONArray("results");
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject o = data.getJSONObject(i);
-              Double mLat =  o.getDouble("緯度(WGS84)");
-                Double mLng = o.getDouble("經度(WGS84)");
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
-              mLat,mLng ),14));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
     }
 
 }
